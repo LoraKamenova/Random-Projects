@@ -1,3 +1,5 @@
 function solve () {
 
 }
+
+solve();
