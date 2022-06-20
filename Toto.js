@@ -1,5 +1,4 @@
-function solve () {
-    const arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+function solve (arr) {
     const counts = {};
 
     for (const num of arr) {
@@ -15,6 +14,6 @@ function solve () {
 
     console.log(counts[5], counts[2], counts[9], counts[4]);
 }
-solve();
+solve([5, 5, 5, 2, 2, 2, 2, 2, 9, 4]);
 
 
