@@ -6,8 +6,14 @@ function solve () {
         counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
 
+
+    for (let key in counts) {
+        if (counts.hasOwnProperty(key)) {
+            console.log(key + " -> " + counts[key]);
+        }
+    }
+
     console.log(counts[5], counts[2], counts[9], counts[4]);
-    console.log(counts[5]); // logs '3'
 }
 solve();
 
