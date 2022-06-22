@@ -1,4 +1,4 @@
-function getMostFrequentNumbers6of49 (arr) {
+function getMostFrequentNumbersToto6of49 (arr) {
     const counts = {};
 
     for (const num of arr) {
