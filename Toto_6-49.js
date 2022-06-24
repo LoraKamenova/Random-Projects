@@ -27,7 +27,9 @@ function getMostFrequentNumbersToto6of49(arr) {
 
     console.log(sortProperties(counts))
 
-    console.log(sortProperties(counts)[0][0] + ' -> ' + sortProperties(counts)[0][1]);
+    for (let i = 0; i < 49; i++) {
+        console.log(sortProperties(counts)[i][0] + ' -> ' + sortProperties(counts)[i][1]);
+    }
 
 
 }
