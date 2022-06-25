@@ -1,4 +1,4 @@
-const {arr} = require('./Script_5_of_35');
+const {arr} = require('./Input_5_of_35');
 
 function solve2 (arr) {
     const counts2 = {};
