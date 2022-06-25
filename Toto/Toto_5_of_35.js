@@ -62,6 +62,12 @@ function solve2() {
     console.log("Your lucky numbers are: ")
     console.log(string2)
 
+    let date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    const content = `${date} Your lucky numbers are: ${string2} \r\n`;
+
+    fs.appendFile('Toto/History_5_of_35.txt', content, function (err) {
+        if (err) throw err;
+    });
 
 }
 
