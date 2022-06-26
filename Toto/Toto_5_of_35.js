@@ -1,5 +1,3 @@
-function solve2() {
-
     //get input from file
     let fs = require('fs');
     let array = fs.readFileSync('Toto/5_of_35_draws.txt').toString().split("\r\n");
@@ -68,7 +66,3 @@ function solve2() {
     fs.appendFile('Toto/History_5_of_35.txt', content, function (err) {
         if (err) throw err;
     });
-
-}
-
-solve2();
