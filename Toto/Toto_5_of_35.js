@@ -1,68 +1,61 @@
-    //get input from file
-    let fs = require('fs');
-    let array = fs.readFileSync('Toto/5_of_35_draws.txt').toString().split("\r\n");
-    let arr = [];
+//get raw data from file
+let fs = require('fs');
+let inputData = fs.readFileSync('Toto/5_of_35_draws.txt').toString().split("\r\n");
+let allDrawnNumbers = [];
 
-    for (let i = 0; i < array.length - 1; i++) {
-        let myArray = array[i].split(" - ");
-        let temp = myArray[1].split(",");
+for (let i = 0; i < inputData.length - 1; i++) {
+    let singleLine = inputData[i].split(" - ");
+    let drawNumbers = singleLine[1].split(",");
 
-        for (let j = 0; j < temp.length; j++) {
-            arr.push(temp[j].trim());
-        }
+    for (let j = 0; j < drawNumbers.length; j++) {
+        allDrawnNumbers.push(drawNumbers[j].trim());
     }
+}
 
-    //calculate frequency of each number
-    const counts2 = {};
+//calculate frequency of each number
+const frequencyCounter = {};
 
-    for (const num of arr) {
-        counts2[num] = counts2[num] ? counts2[num] + 1 : 1;
-    }
+for (const num of allDrawnNumbers) {
+    frequencyCounter[num] = frequencyCounter[num] ? frequencyCounter[num] + 1 : 1;
+}
 
-    // for (let key in counts2) {
-    //     if (counts2.hasOwnProperty(key)) {
-    //         console.log(key + " -> " + counts2[key]);
-    //     }
-    // }
+//sort numbers by frequency
+function sortFrequencies(obj) {
+    // convert object into array
+    let sortable = [];
+    for (let key in obj)
+        if (obj.hasOwnProperty(key))
+            sortable.push([key, obj[key]]);
 
-    //sort frequencies
-    function sortProperties2(obj) {
-        // convert object into array
-        let sortable = [];
-        for (let key in obj)
-            if (obj.hasOwnProperty(key))
-                sortable.push([key, obj[key]]);
-
-        // sort items by value
-        sortable.sort(function (a, b) {
-            return a[1] - b[1]; // compare numbers
-        });
-        return sortable;
-    }
-
-    let temp = sortProperties2(counts2)
-
-    console.log(temp)
-
-    for (let i = 0; i < temp.length; i++) {
-        console.log(temp[i][0] + ' -> ' + temp[i][1]);
-    }
-
-
-    let string2 = ""
-
-    for (let i = temp.length - 1; i > (temp.length - 1) - 5; i--) {
-        string2 += ` ${temp[i][0]} `;
-
-    }
-
-    console.log();
-    console.log("Your lucky numbers are: ")
-    console.log(string2)
-
-    let date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-    const content = `${date} Your lucky numbers are: ${string2} \r\n`;
-
-    fs.appendFile('Toto/History_5_of_35.txt', content, function (err) {
-        if (err) throw err;
+    // sort items by value
+    sortable.sort(function (a, b) {
+        return a[1] - b[1]; // compare numbers
     });
+    return sortable;
+}
+
+let sortedFrequencyCounter = sortFrequencies(frequencyCounter)
+
+//print numbers and their frequencies
+for (let i = 0; i < sortedFrequencyCounter.length; i++) {
+    console.log(sortedFrequencyCounter[i][0] + ' -> ' + sortedFrequencyCounter[i][1]);
+}
+
+// print lucky numbers on console
+let luckyNumbers = ""
+
+for (let i = sortedFrequencyCounter.length - 1; i > (sortedFrequencyCounter.length - 1) - 5; i--) {
+    luckyNumbers += ` ${sortedFrequencyCounter[i][0]} `;
+}
+
+console.log();
+console.log("Your lucky numbers are: ")
+console.log(luckyNumbers)
+
+//print lucky numbers in History file
+let date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+const content = `${date} Your lucky numbers are: ${luckyNumbers} \r\n`;
+
+fs.appendFile('Toto/History_5_of_35.txt', content, function (err) {
+    if (err) throw err;
+});
