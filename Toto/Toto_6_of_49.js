@@ -2,10 +2,12 @@
 let fs = require('fs');
 let inputData = fs.readFileSync('Toto/6_of_49_draws.txt').toString().split("\r\n");
 let allDrawnNumbers = [];
+let draw = -1;
 
 for (let i = 0; i < inputData.length - 1; i++) {
-    let singleLine = inputData[i].split(" - ");
-    let drawNumbers = singleLine[1].split(",");
+    let singleLineSplit = inputData[i].split(" - ");
+    draw = singleLineSplit[0];
+    let drawNumbers = singleLineSplit[1].split(",");
 
     for (let j = 0; j < drawNumbers.length; j++) {
         allDrawnNumbers.push(drawNumbers[j].trim());
@@ -48,13 +50,11 @@ for (let i = sortedFrequencyCounter.length - 1; i > (sortedFrequencyCounter.leng
     luckyNumbers += ` ${sortedFrequencyCounter[i][0]} `;
 }
 
-console.log();
-console.log("Your lucky numbers are: ")
-console.log(luckyNumbers)
+console.log(`\r\nYour lucky numbers for draw ${Number(draw) + 1} are: ${luckyNumbers}`);
 
 //print lucky numbers in History file
 let date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
-const content = `${date} Your lucky numbers are: ${luckyNumbers} \r\n`;
+const content = `${date} Your lucky numbers for draw ${Number(draw) + 1} are: ${luckyNumbers} \r\n`;
 
 fs.appendFile('Toto/History_6_of_49.txt', content, function (err) {
     if (err) throw err;
