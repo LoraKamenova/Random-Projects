@@ -2,11 +2,11 @@
 let fs = require('fs');
 let inputData = fs.readFileSync('Toto/5_of_35_draws.txt').toString().split("\r\n");
 let allDrawnNumbers = [];
-let drawNumber = -1;
+let draw = -1;
 
 for (let i = 0; i < inputData.length - 1; i++) {
-    let singleLine = inputData[i].split(" - ");
-    let drawNumbers = singleLine[1].split(",");
+    let singleLineSplit = inputData[i].split(" - ");
+    let drawNumbers = singleLineSplit[1].split(",");
 
     for (let j = 0; j < drawNumbers.length; j++) {
         allDrawnNumbers.push(drawNumbers[j].trim());
