@@ -51,6 +51,7 @@ for (let i = sortedFrequencyCounter.length - 1; i > (sortedFrequencyCounter.leng
 }
 
 console.log(`\r\nYour lucky numbers for draw ${Number(draw) + 1} are: ${luckyNumbers}`);
+console.log('Good luck!');
 
 //print lucky numbers in History file
 let date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
