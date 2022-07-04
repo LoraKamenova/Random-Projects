@@ -1,6 +1,6 @@
 # Random-Projects
 
-## Project Toto 
+## Проект Тото 
 
 ### Used technology: 
 JavaScript
