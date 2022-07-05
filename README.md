@@ -2,7 +2,7 @@
 
 ## Проект Тото 
 
-### Used technology: 
+### Използвани технологии: 
 JavaScript
 
 ### Aim of the project:
