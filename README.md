@@ -1,8 +1,8 @@
 # Random-Projects
 
-## Project Toto 
+## Проект Тото 
 
-### Used technology: 
+### Използвани технологии: 
 JavaScript
 
 ### Aim of the project:
